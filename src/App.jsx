@@ -6,6 +6,7 @@ import AppointmentList from './components/AppointmentList';
 import { doctors } from './mockData';
 import './index.css';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +16,8 @@ class App extends Component {
       appointments: [],
       selectedDoctor: null,
       searchTerm: '',
-      filterSpec: 'All',
-      showToast: false,
-      toastMessage: ''
+      filterSpec: 'All'
+      
     };
   }
 
@@ -42,8 +42,8 @@ class App extends Component {
   };
 
   handleFilter = (e) => {
-    const filterSpec = e.target.value;
-    this.setState({ filterSpec }, this.applyFilters);
+   
+    this.setState({ filterSpec:e.target.value }, this.applyFilters);
   };
 
   applyFilters = () => {
@@ -68,8 +68,7 @@ class App extends Component {
     this.setState(prevState => ({
       appointments: [...prevState.appointments, appointment],
       selectedDoctor: null,
-      showToast: true,
-      toastMessage: 'Appointment booked successfully!'
+      
     }));
 
     setTimeout(() => this.setState({ showToast: false }), 3000);
@@ -78,8 +77,7 @@ class App extends Component {
   cancelAppointment = (id) => {
     this.setState(prevState => ({
       appointments: prevState.appointments.filter(app => app.id !== id),
-      showToast: true,
-      toastMessage: 'Appointment cancelled.'
+      
     }));
 
     setTimeout(() => this.setState({ showToast: false }), 3000);
@@ -87,7 +85,8 @@ class App extends Component {
 
   render() {
     const { filteredDoctors, selectedDoctor, appointments, showToast, toastMessage, filterSpec } = this.state;
-    const specializations = ['All', ...new Set(doctors.map(d => d.specialization))];
+    const specializations = ["All",...doctors.map(each=>each.specialization)]
+    
 
     return (
       <div className="app">
@@ -149,11 +148,6 @@ class App extends Component {
           />
         )}
 
-        {showToast && (
-          <div className="toast">
-            {toastMessage}
-          </div>
-        )}
 
         <footer style={{ padding: '4rem 0', textAlign: 'center', borderTop: '1px solid var(--border-color)', marginTop: '4rem' }}>
           <p style={{ color: 'var(--text-muted)' }}>&copy; 2026 PlusCare Health Services. All rights reserved.</p>

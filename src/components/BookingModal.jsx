@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class BookingModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: '', time: '' };
+    this.state = { date: '',time:"" };
   }
 
   handleSubmit = (e) => {

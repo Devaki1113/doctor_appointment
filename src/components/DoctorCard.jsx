@@ -11,9 +11,7 @@ class DoctorCard extends Component {
         <div className="doctor-info">
           <div className="doctor-spec">{doctor.specialization}</div>
           <div className="doctor-name">{doctor.name}</div>
-          <div className="doctor-timings">
-            <strong>Timings:</strong> {doctor.timings}
-          </div>
+          
           <button 
             className="btn btn-primary"
             style={{ marginTop: 'auto' }}
